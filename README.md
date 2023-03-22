@@ -9,7 +9,7 @@ output_dir: The path to the directory where you want to store the output files a
 words_per_file: The number of words you want to include in each output file.
 
 Functions
-split_text(input_file, output_dir, words_per_file): This function splits the input text file into smaller files based on the specified number of words per file. The smaller files are stored in the specified output directory.
+split_text(input_file, output_dir, words_per_file): This function splits the input text file into smaller files based on the  specified number of words per file. The smaller files are stored in the specified output directory.
 summarize_text(text): This function summarizes the input text using GPT-3 and returns a summary.
 improve_text(text): This function improves the coherence and readability of the input text using GPT-3 and returns a summary.
 summarize_output_files(output_dir): This function summarizes all of the output files in the specified directory using summarize_text(). The summaries are stored in a dictionary with the file names as keys and the summaries as values.
