@@ -2,10 +2,10 @@
 # By Taylor Quade
 
 # Variables
-input_file = r'C:\Users\tayqu\Desktop\text.txt'
-output_dir = r'C:\Users\tayqu\Desktop\output docs'
-words_per_file = 400
+input_file = r'YOUR INPUT FILE PATH'
+output_dir = r'YOUR OUTPUT DIRECTORY PATH'
 openai.api_key = "YOUR API KEY HERE"
+words_per_file = 400
 
 import os
 import openai
