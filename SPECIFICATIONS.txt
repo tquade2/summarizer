@@ -1,3 +1,0 @@
-new ideas
-    automatically create output directory
-    automatically open final_summary
