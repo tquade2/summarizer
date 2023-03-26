@@ -1,31 +1,33 @@
 # Summarizer
 # By Taylor Quade
 
-# Variables
-input_file = r'YOUR INPUT FILE PATH'
-output_dir = r'YOUR OUTPUT DIRECTORY PATH'
-openai.api_key = "YOUR API KEY HERE"
-words_per_file = 400
-
 import os
 import openai
+
+# Variables
+INPUT_FILE = r'your input file path here'
+OUTPUT_DIR = r'YOUR OUTPUT DIRECTORY PATH'
+openai.api_key = "YOUR API KEY HERE"
+WORDS_PER_FILE = 400
+
+
 
 def split_text(input_file, output_dir, words_per_file=400):
     # Check if output directory exists, and create it if it doesn't
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
-    
+
     # Read in text from input file
     with open(input_file, 'r') as f:
         text = f.read()
-    
+
     # Split text into individual words
     words = text.split()
-    
+
     # Calculate number of files needed to hold all words
     num_files = len(words) // words_per_file + 1
     print(f"Splitting text into {num_files} files.")
-    
+
     # Write words to output files
     for i in range(num_files):
         start_index = i * words_per_file
