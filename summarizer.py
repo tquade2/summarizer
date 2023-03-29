@@ -1,17 +1,17 @@
 # Summarizer
 # By Taylor Quade
 
+# Import necessary libraries
 import os
 import openai
 
-# Variables
+# Define variables
 INPUT_FILE = r'your input file path here'
 OUTPUT_DIR = r'YOUR OUTPUT DIRECTORY PATH'
 openai.api_key = "YOUR API KEY HERE"
 WORDS_PER_FILE = 400
 
-
-
+# Define function to split the input file into multiple output files
 def split_text(input_file, output_dir, words_per_file=400):
     # Check if output directory exists, and create it if it doesn't
     if not os.path.exists(output_dir):
@@ -38,7 +38,7 @@ def split_text(input_file, output_dir, words_per_file=400):
         print(f"Created output file {file_name}.")
 
 # Split the input file into multiple output files
-split_text(input_file, output_dir, words_per_file)
+split_text(INPUT_FILE, OUTPUT_DIR, WORDS_PER_FILE)
 
 # Define function to summarize text using GPT-3
 def summarize_text(text):
@@ -53,7 +53,7 @@ def summarize_text(text):
     summary = response.choices[0].text.strip()
     return summary
 
-# Define function to imrpove text using GPT-3
+# Define function to improve text using GPT-3
 def improve_text(text):
     response = openai.Completion.create(
         engine="text-davinci-002",
@@ -66,9 +66,15 @@ def improve_text(text):
     summary = response.choices[0].text.strip()
     return summary
 
+# Define function to summarize the text in each output file
 def summarize_output_files(output_dir):
+    # Create a dictionary to store the summaries
     summaries = {}
+
+    # Determine the desired order for the output files based on their names
     desired_order = [f"output_{i}.txt" for i in range(1, len(os.listdir(output_dir))+1)]
+
+    # Summarize the text in each file and store the summaries in the dictionary
     for filename in desired_order:
         file_path = os.path.join(output_dir, filename)
         with open(file_path, 'r') as f:
@@ -79,7 +85,7 @@ def summarize_output_files(output_dir):
     return summaries
 
 # Summarize the text in each output file and store in a dictionary
-summaries = summarize_output_files(output_dir)
+summaries = summarize_output_files(OUTPUT_DIR)
 
 # Write the summaries to a new file
 output_file = os.path.join(output_dir, "all_summaries.txt")
@@ -97,3 +103,6 @@ with open('C:\\Users\\tayqu\\Desktop\\output docs\\final_summary.txt', 'w') as f
     final_summary = improve_text(all_summaries)
     f.write(final_summary)
 print("Final summary written to 'final_summary.txt'")
+
+# Script finished running successfully
+print("Done!")
